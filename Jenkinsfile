@@ -48,9 +48,10 @@ pipeline {
         withCredentials([sshUserPrivateKey(
           credentialsId: 'jenkins-ssh-key', 
           keyFileVariable: 'SSH_KEY'
-      )])
+      )]) {
       sh "ssh -i $SSH_KEY jenkins@42.96.58.38 './deploy.sh'"
-      }
+        }
+      } 
     }
   }
 
