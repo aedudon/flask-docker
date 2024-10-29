@@ -41,6 +41,17 @@ pipeline {
         sh "docker image rm ${DOCKER_IMAGE}:latest"
       }
     }
+
+    stage("deploy to Staging") {
+      agent { node { label 'built-in' } }
+      steps {
+        withCredentials([sshUserPrivateKey(
+          credentialsId: 'jenkins-ssh-key', 
+          keyFileVariable: 'SSH_KEY'
+      )])
+      sh "ssh -i $SSH_KEY jenkins@42.96.58.38 './deploy.sh'"
+      }
+    }
   }
 
   post {
