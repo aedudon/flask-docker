@@ -46,7 +46,7 @@ pipeline {
       agent { node { label 'built-in' } }
       steps {
         sshagent(credentials: ['jenkins-ssh-key']) {
-            sh "ssh -o StrictHostKeyChecking=no -i jenkins-ssh-key jenkins@125.212.231.31 './deploy.sh'"
+            sh "ssh -o StrictHostKeyChecking=no -i jenkins-ssh-key jenkins@125.212.231.31 'cd /home/jenkins/flask-docker && ./deploy.sh'"
         }
       } 
     }
