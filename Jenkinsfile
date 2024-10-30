@@ -49,7 +49,7 @@ pipeline {
           credentialsId: 'jenkins-ssh-key', 
           keyFileVariable: 'SSH_KEY'
       )]) {
-      sh "ssh -i $SSH_KEY jenkins@42.96.58.38 './deploy.sh'"
+      sh "ssh -i $SSH_KEY jenkins@125.212.231.31 './deploy.sh'"
         }
       } 
     }
