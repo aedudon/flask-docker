@@ -45,10 +45,8 @@ pipeline {
     stage("deploy to Staging") {
       agent { node { label 'built-in' } }
       steps {
-        withCredentials([sshUserPrivateKey(
-          credentialsId: 'jenkins-ssh-key'
-      )]) {
-      sh "ssh -i jenkins-ssh-key jenkins@125.212.231.31 './deploy.sh'"
+        sshagent(credentials: ['jenkins-ssh-key']) {
+            sh "ssh -o StrictHostKeyChecking=no -i jenkins-ssh-key jenkins@125.212.231.31 './deploy.sh'"
         }
       } 
     }
