@@ -46,10 +46,9 @@ pipeline {
       agent { node { label 'built-in' } }
       steps {
         withCredentials([sshUserPrivateKey(
-          credentialsId: 'jenkins-ssh-key', 
-          keyFileVariable: 'SSH_KEY'
+          credentialsId: 'jenkins-ssh-key'
       )]) {
-      sh "ssh -i $SSH_KEY jenkins@125.212.231.31 './deploy.sh'"
+      sh "ssh -i jenkins-ssh-key jenkins@125.212.231.31 './deploy.sh'"
         }
       } 
     }
